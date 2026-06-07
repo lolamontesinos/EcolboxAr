@@ -142,15 +142,13 @@
     "edit-136-a": "Qué es",
     "edit-137-li": "<a href=\"#productos\" data-edit-id=\"edit-138-a\" contenteditable=\"true\" class=\"admin-editable\">Productos</a>",
     "edit-138-a": "Productos",
-    "edit-139-li": "Ludovica Pacilio",
-    "edit-141-li": "Tomás Ruibal",
+    "edit-139-li": "Planes",
+    "edit-141-li": "Comunidad",
     "edit-143-h4": "Contacto",
-    "edit-144-li": "<a href=\"#\" data-edit-id=\"edit-145-a\" contenteditable=\"true\" class=\"admin-editable\">\n          <span class=\"logo-icon\">🌿</span>\n          <span class=\"logo-text\">EcolBox <strong>AR</strong></span>\n        </a>",
-    "edit-145-a": "\n          <span class=\"logo-icon\">🌿</span>\n          <span class=\"logo-text\">EcolBox <strong>AR</strong></span>\n        ",
+    "edit-144-li": "<ul style=\"background-color: rgb(27, 67, 50);\"><li data-edit-id=\"edit-146-li\"><a href=\"mailto:hola@ecolbox.ar\" style=\"transition: color 0.25s;\" data-edit-id=\"edit-147-a\">hola@ecolbox.ar</a></li></ul>",
     "edit-146-li": "<a href=\"#\" data-edit-id=\"edit-147-a\" contenteditable=\"true\" class=\"admin-editable\">Instagram</a>",
     "edit-147-a": "Instagram",
-    "edit-148-li": "<a href=\"#que-es\" data-edit-id=\"edit-149-a\" contenteditable=\"true\" class=\"admin-editable\">Qué es</a>",
-    "edit-149-a": "Qué es",
+    "edit-148-li": "LinkedIn",
     "edit-150-span": "2026 EcolBox AR — Proyecto académico. Todos los derechos reservados."
   },
   "links": {
@@ -170,15 +168,13 @@
     "edit-132-a": "#",
     "edit-136-a": "#que-es",
     "edit-138-a": "#productos",
-    "edit-145-a": "#",
-    "edit-147-a": "#",
-    "edit-149-a": "#que-es"
+    "edit-147-a": "#"
   },
   "styles": {
-    "--color-primary": "#49b685",
+    "--color-primary": "#316d52",
     "--color-primary-dark": "#1b4332",
     "--color-accent": "#95d5b2",
-    "--color-bg": "#faf9f6"
+    "--color-bg": "#ffffff"
   },
   "hiddenSections": []
 }
