@@ -33,7 +33,7 @@
 
   <main>
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="hero-bg"></div>
       <div class="container hero-content">
         <div class="hero-badge">Suscripción mensual · Argentina</div>
@@ -361,7 +361,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section">
+    <section class="cta-section" id="cta">
       <div class="container cta-content">
         <h2>¿Listo para empezar tu transición ecológica?</h2>
         <p>Unite a EcolBox AR y recibí cada mes productos que cuidan el planeta y apoyan emprendedores locales.</p>
@@ -398,10 +398,11 @@
       </div>
     </div>
     <div class="footer-bottom container">
-      <p>&copy; 2026 EcolBox AR — Proyecto académico. Todos los derechos reservados.</p>
+      <p><button type="button" id="copyright-trigger" class="copyright-trigger" aria-label="Admin">&copy;</button> <span class="footer-copy-text">2026 EcolBox AR — Proyecto académico. Todos los derechos reservados.</span></p>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>
