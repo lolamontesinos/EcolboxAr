@@ -9,8 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/fancy.css">
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
   <header class="header" id="header">
     <nav class="nav container">
       <a href="#" class="logo">
@@ -34,55 +37,115 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="hero">
-      <div class="hero-bg"></div>
-      <div class="container hero-content">
-        <div class="hero-badge">Suscripción mensual · Argentina</div>
-        <h1>Hábitos conscientes,<br><em>directo a tu hogar</em></h1>
-        <p class="hero-subtitle">
-          EcolBox AR conecta a jóvenes adultos y familias con productos ecológicos certificados
-          y emprendedores locales. Una caja mensual curada para simplificar el consumo sustentable.
-        </p>
-        <div class="hero-actions">
-          <a href="#planes" class="btn btn-primary">Ver planes</a>
-          <a href="#que-es" class="btn btn-outline">Conocer más</a>
+      <div class="hero-bg" data-parallax="0.3"></div>
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+      </div>
+      <div class="container hero-layout">
+        <div class="hero-content reveal" data-reveal="up">
+          <div class="hero-badge">Suscripción mensual · Argentina</div>
+          <h1>Hábitos conscientes,<br><em>directo a tu hogar</em></h1>
+          <p class="hero-subtitle">
+            EcolBox AR conecta a jóvenes adultos y familias con productos ecológicos certificados
+            y emprendedores locales. Una caja mensual curada para simplificar el consumo sustentable.
+          </p>
+          <div class="hero-actions">
+            <a href="#planes" class="btn btn-primary btn-glow">Ver planes</a>
+            <a href="#que-es" class="btn btn-outline">Conocer más</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value" data-count="4">4</span>
+              <span class="stat-label">Planes flexibles</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Productos certificados</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">🇦🇷</span>
+              <span class="stat-label">Emprendedores locales</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-value">4</span>
-            <span class="stat-label">Planes flexibles</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">100%</span>
-            <span class="stat-label">Productos certificados</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">🇦🇷</span>
-            <span class="stat-label">Emprendedores locales</span>
+        <div class="hero-showcase reveal" data-reveal="left">
+          <div class="hero-carousel carousel" data-carousel data-autoplay="5000">
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide hero-slide">
+                  <div class="hero-slide-card glass-card">
+                    <img src="assets/caja-ecolbox.jpeg" alt="Caja EcolBox AR con productos ecológicos" class="hero-slide-img">
+                    <p class="hero-slide-caption">Tu caja mensual, curada con amor 🌿</p>
+                  </div>
+                </div>
+                <div class="carousel-slide hero-slide">
+                  <div class="hero-slide-card glass-card">
+                    <img src="assets/hero-mujer-caja.png" alt="Mujer recibiendo su caja EcolBox AR en casa" class="hero-slide-img">
+                    <p class="hero-slide-caption">Recibí tu caja en la puerta de tu hogar 📦</p>
+                  </div>
+                </div>
+                <div class="carousel-slide hero-slide">
+                  <div class="hero-slide-card glass-card">
+                    <img src="assets/hero-shampoo.png" alt="Shampoo natural EcolBox AR 100% vegano" class="hero-slide-img">
+                    <p class="hero-slide-caption">Cosmética natural, compostable y vegana 🧴</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots"></div>
           </div>
         </div>
       </div>
+      <a href="#que-es" class="hero-scroll-hint" aria-label="Scroll hacia abajo">
+        <span>Descubrí más</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
     </section>
+
+    <!-- Marquee -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-inner">
+        <div class="marquee-content">
+          <span>🌿 Productos certificados</span>
+          <span>📦 Envío a todo el país</span>
+          <span>🇦🇷 Emprendedores locales</span>
+          <span>♻️ Packaging sustentable</span>
+          <span>🌱 Educación ambiental</span>
+          <span>✨ Sorpresa en plan Premium</span>
+        </div>
+        <div class="marquee-content">
+          <span>🌿 Productos certificados</span>
+          <span>📦 Envío a todo el país</span>
+          <span>🇦🇷 Emprendedores locales</span>
+          <span>♻️ Packaging sustentable</span>
+          <span>🌱 Educación ambiental</span>
+          <span>✨ Sorpresa en plan Premium</span>
+        </div>
+      </div>
+    </div>
 
     <!-- Qué es -->
     <section class="section" id="que-es">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal" data-reveal="up">
           <span class="section-tag">¿Qué es EcolBox?</span>
           <h2>Comercio electrónico sustentable & suscripciones digitales</h2>
           <p>Dirigido a jóvenes adultos y familias (20–40 años) interesados en consumo sustentable en Argentina.</p>
         </div>
         <div class="cards-grid cards-3">
-          <article class="card">
+          <article class="card glass-hover reveal" data-reveal="up" data-reveal-delay="0">
             <div class="card-icon">📦</div>
             <h3>Caja mensual curada</h3>
             <p>Recibí en tu casa una selección de productos ecológicos certificados, listos para incorporar a tu rutina.</p>
           </article>
-          <article class="card">
+          <article class="card glass-hover reveal" data-reveal="up" data-reveal-delay="1">
             <div class="card-icon">🔄</div>
             <h3>Suscripción flexible</h3>
             <p>Elegí el plan que se adapte a tu estilo de vida. Modificá o cancelá cuando quieras, sin complicaciones.</p>
           </article>
-          <article class="card">
+          <article class="card glass-hover reveal" data-reveal="up" data-reveal-delay="2">
             <div class="card-icon">✅</div>
             <h3>Confianza garantizada</h3>
             <p>Cada producto pasa por un proceso de selección riguroso. Sin dudas sobre la veracidad ecológica.</p>
@@ -92,9 +155,9 @@
     </section>
 
     <!-- Desafío -->
-    <section class="section section-alt" id="desafio">
+    <section class="section section-alt section-blob" id="desafio">
       <div class="container split">
-        <div class="split-content">
+        <div class="split-content reveal" data-reveal="right">
           <span class="section-tag">El desafío ecológico</span>
           <h2>Facilitando el consumo responsable</h2>
           <p>Muchas personas en Argentina desean adoptar hábitos más sustentables pero se enfrentan a barreras reales:</p>
@@ -113,8 +176,8 @@
             </li>
           </ul>
         </div>
-        <div class="split-visual">
-          <div class="visual-card">
+        <div class="split-visual reveal" data-reveal="left">
+          <div class="visual-card visual-card-glow">
             <div class="visual-number">73%</div>
             <p>de argentinos declaran interés en consumir de forma más sustentable*</p>
             <span class="visual-note">*Dato ilustrativo para el proyecto académico</span>
@@ -126,22 +189,22 @@
     <!-- Propuesta de valor -->
     <section class="section" id="propuesta">
       <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered reveal" data-reveal="up">
           <span class="section-tag">Propuesta de valor</span>
           <h2>Más que una caja: un cambio de hábitos</h2>
         </div>
         <div class="value-grid">
-          <article class="value-card">
+          <article class="value-card reveal" data-reveal="up" data-reveal-delay="0">
             <div class="value-number">01</div>
             <h3>Comodidad</h3>
             <p>Cajas mensuales con productos seleccionados y certificados — cepillos de bambú, cosmética natural y más — directos al hogar.</p>
           </article>
-          <article class="value-card featured">
+          <article class="value-card featured reveal" data-reveal="scale" data-reveal-delay="1">
             <div class="value-number">02</div>
             <h3>Educación ambiental</h3>
             <p>No solo vendemos productos: fomentamos hábitos responsables y educación continua mediante recomendaciones personalizadas en cada entrega.</p>
           </article>
-          <article class="value-card">
+          <article class="value-card reveal" data-reveal="up" data-reveal-delay="2">
             <div class="value-number">03</div>
             <h3>Comunidad local</h3>
             <p>Diferenciación competitiva clave mediante alianzas exclusivas con emprendedores locales de todo el país.</p>
@@ -150,70 +213,130 @@
       </div>
     </section>
 
+    <!-- Banner carousel -->
+    <section class="banner-section" id="banners">
+      <div class="banner-carousel carousel carousel-banner" data-carousel data-autoplay="4500">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide banner-slide banner-slide-1">
+              <div class="banner-slide-inner container">
+                <div class="banner-text">
+                  <span class="banner-label">Comodidad</span>
+                  <h2>Recibí tu caja sin salir de casa</h2>
+                  <p>Productos certificados seleccionados cada mes y enviados directo a tu puerta en todo Argentina.</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-slide banner-slide banner-slide-2">
+              <div class="banner-slide-inner container">
+                <div class="banner-text">
+                  <span class="banner-label">Educación</span>
+                  <h2>Aprendé mientras consumís mejor</h2>
+                  <p>Cada entrega incluye tips de sostenibilidad y recomendaciones para incorporar hábitos responsables.</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-slide banner-slide banner-slide-3">
+              <div class="banner-slide-inner container">
+                <div class="banner-text">
+                  <span class="banner-label">Comunidad</span>
+                  <h2>Apoyá emprendedores argentinos</h2>
+                  <p>Alianzas exclusivas con productores locales de todo el país que comparten nuestra misión ecológica.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Anterior">‹</button>
+        <button class="carousel-btn carousel-next" aria-label="Siguiente">›</button>
+        <div class="carousel-dots"></div>
+      </div>
+    </section>
+
     <!-- Productos -->
     <section class="section section-alt" id="productos">
       <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered reveal" data-reveal="up">
           <span class="section-tag">Contenido de la caja</span>
           <h2>Productos incluidos</h2>
           <p>Cada mes una selección variada de productos esenciales para tu día a día sustentable.</p>
         </div>
-        <div class="products-grid">
-          <article class="product-card">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/cepillo-bambu.png" alt="Ilustración de cepillo de bambú" class="product-image product-illustration" loading="lazy">
+        <div class="carousel products-carousel reveal" data-reveal="up" data-carousel>
+          <button class="carousel-btn carousel-prev" aria-label="Producto anterior">‹</button>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/cepillo-bambu.png" alt="Ilustración de cepillo de bambú" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Cepillos de bambú</h3>
+                  <p>Alternativa biodegradable al plástico de un solo uso.</p>
+                </article>
+              </div>
+              <div class="carousel-slide">
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/cosmeticos-naturales.png" alt="Ilustración de cosméticos naturales" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Cosméticos naturales</h3>
+                  <p>Cuidado personal sin químicos agresivos ni testeo animal.</p>
+                </article>
+              </div>
+              <div class="carousel-slide">
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/limpieza-ecologica.png" alt="Ilustración de limpieza ecológica" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Limpieza ecológica</h3>
+                  <p>Productos de limpieza biodegradables y seguros para el hogar.</p>
+                </article>
+              </div>
+              <div class="carousel-slide">
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/botella-reutilizable.png" alt="Ilustración de botella reutilizable" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Botellas reutilizables</h3>
+                  <p>Reducí el uso de plásticos de un solo uso en tu rutina diaria.</p>
+                </article>
+              </div>
+              <div class="carousel-slide">
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/bolsa-reutilizable.png" alt="Ilustración de bolsa reutilizable" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Bolsas reutilizables</h3>
+                  <p>Bolsas de tela y materiales sustentables para tus compras.</p>
+                </article>
+              </div>
+              <div class="carousel-slide">
+                <article class="product-card product-surprise">
+                  <div class="product-image-wrap">
+                    <img src="assets/illustrations/sorpresa-especial.png" alt="Ilustración de producto sorpresa" class="product-image product-illustration" loading="lazy">
+                  </div>
+                  <h3>Sorpresa especial</h3>
+                  <p>En el plan Premium: un producto exclusivo de emprendedores locales.</p>
+                </article>
+              </div>
             </div>
-            <h3>Cepillos de bambú</h3>
-            <p>Alternativa biodegradable al plástico de un solo uso.</p>
-          </article>
-          <article class="product-card">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/cosmeticos-naturales.png" alt="Ilustración de cosméticos naturales" class="product-image product-illustration" loading="lazy">
-            </div>
-            <h3>Cosméticos naturales</h3>
-            <p>Cuidado personal sin químicos agresivos ni testeo animal.</p>
-          </article>
-          <article class="product-card">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/limpieza-ecologica.png" alt="Ilustración de limpieza ecológica" class="product-image product-illustration" loading="lazy">
-            </div>
-            <h3>Limpieza ecológica</h3>
-            <p>Productos de limpieza biodegradables y seguros para el hogar.</p>
-          </article>
-          <article class="product-card">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/botella-reutilizable.png" alt="Ilustración de botella reutilizable" class="product-image product-illustration" loading="lazy">
-            </div>
-            <h3>Botellas reutilizables</h3>
-            <p>Reducí el uso de plásticos de un solo uso en tu rutina diaria.</p>
-          </article>
-          <article class="product-card">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/bolsa-reutilizable.png" alt="Ilustración de bolsa reutilizable" class="product-image product-illustration" loading="lazy">
-            </div>
-            <h3>Bolsas reutilizables</h3>
-            <p>Bolsas de tela y materiales sustentables para tus compras.</p>
-          </article>
-          <article class="product-card product-surprise">
-            <div class="product-image-wrap">
-              <img src="assets/illustrations/sorpresa-especial.png" alt="Ilustración de producto sorpresa" class="product-image product-illustration" loading="lazy">
-            </div>
-            <h3>Sorpresa especial</h3>
-            <p>En el plan Premium: un producto exclusivo de emprendedores locales.</p>
-          </article>
+          </div>
+          <button class="carousel-btn carousel-next" aria-label="Producto siguiente">›</button>
+          <div class="carousel-dots"></div>
         </div>
+        <p class="carousel-hint">← Deslizá para ver todos los productos →</p>
       </div>
     </section>
 
     <!-- Planes -->
-    <section class="section" id="planes">
+    <section class="section section-gradient" id="planes">
       <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered reveal" data-reveal="up">
           <span class="section-tag">Estructura de precios</span>
           <h2>Elegí tu plan</h2>
           <p>Suscripción mensual en pesos argentinos. Cancelá cuando quieras.</p>
         </div>
-        <div class="pricing-grid">
+        <div class="pricing-grid reveal" data-reveal="up">
           <article class="pricing-card">
             <h3>Básico</h3>
             <p class="pricing-desc">3–4 productos esenciales cotidianos</p>
@@ -245,7 +368,7 @@
               <li>Envío incluido a todo el país</li>
               <li>Acceso a comunidad EcolBox</li>
             </ul>
-            <a href="#" class="btn btn-primary btn-block">Elegir Estándar</a>
+            <a href="#" class="btn btn-primary btn-block btn-glow">Elegir Estándar</a>
           </article>
 
           <article class="pricing-card">
@@ -288,33 +411,33 @@
     <!-- Cómo funciona -->
     <section class="section section-alt" id="como-funciona">
       <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered reveal" data-reveal="up">
           <span class="section-tag">Plan de implementación</span>
           <h2>Cómo funciona EcolBox</h2>
         </div>
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item reveal" data-reveal="up" data-reveal-delay="0">
             <div class="timeline-dot">1</div>
             <div class="timeline-content">
               <h3>Elegí tu plan</h3>
               <p>Seleccioná el plan que mejor se adapte a vos y completá tu suscripción en minutos.</p>
             </div>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item reveal" data-reveal="up" data-reveal-delay="1">
             <div class="timeline-dot">2</div>
             <div class="timeline-content">
               <h3>Curamos tu caja</h3>
               <p>Nuestro equipo selecciona productos certificados de emprendedores locales argentinos.</p>
             </div>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item reveal" data-reveal="up" data-reveal-delay="2">
             <div class="timeline-dot">3</div>
             <div class="timeline-content">
               <h3>Recibila en casa</h3>
               <p>Tu caja llega cada mes con guía de uso, tips de sostenibilidad y sorpresas.</p>
             </div>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item reveal" data-reveal="up" data-reveal-delay="3">
             <div class="timeline-dot">4</div>
             <div class="timeline-content">
               <h3>Formá parte de la comunidad</h3>
@@ -325,21 +448,56 @@
       </div>
     </section>
 
-    <!-- Comunidad / KPIs -->
-    <section class="section" id="comunidad">
+    <!-- Testimonials carousel -->
+    <section class="section testimonial-section">
+      <div class="container">
+        <div class="section-header centered reveal" data-reveal="up">
+          <span class="section-tag">Voces sustentables</span>
+          <h2>Lo que nos mueve</h2>
+        </div>
+        <div class="carousel testimonial-carousel reveal" data-reveal="up" data-carousel data-autoplay="6000">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <blockquote class="testimonial-card">
+                  <p>"Queremos que adoptar hábitos sustentables sea simple, accesible y confiable para todas las familias argentinas."</p>
+                  <footer>— Misión EcolBox AR</footer>
+                </blockquote>
+              </div>
+              <div class="carousel-slide">
+                <blockquote class="testimonial-card">
+                  <p>"Cada caja es una oportunidad de descubrir emprendedores locales que apuestan por un futuro más verde."</p>
+                  <footer>— Comunidad local</footer>
+                </blockquote>
+              </div>
+              <div class="carousel-slide">
+                <blockquote class="testimonial-card">
+                  <p>"No solo entregamos productos: acompañamos una transición hacia un consumo más consciente mes a mes."</p>
+                  <footer>— Educación ambiental</footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comunidad -->
+    <section class="section section-blob" id="comunidad">
       <div class="container">
         <div class="split reverse">
-          <div class="split-content">
+          <div class="split-content reveal" data-reveal="right">
             <span class="section-tag">Impacto y comunidad</span>
             <h2>Construyendo un ecosistema sustentable</h2>
             <p>EcolBox AR no es solo un negocio: es una plataforma que impulsa emprendedores locales y educa sobre consumo responsable en Argentina.</p>
             <figure class="box-showcase">
-              <img src="assets/caja-ecolbox.jpeg" alt="Caja EcolBox AR abierta con productos ecológicos certificados" class="box-showcase-img" loading="lazy">
-              <figcaption class="box-showcase-caption">Nuestra caja mensual con productos sustentables seleccionados</figcaption>
+              <img src="assets/comunidad-taller.png" alt="Taller EcolBox AR — comunidad de emprendedores locales" class="box-showcase-img" loading="lazy">
+              <figcaption class="box-showcase-caption">Comunidad EcolBox AR — taller de creación con emprendedores locales</figcaption>
             </figure>
           </div>
-          <div class="split-visual">
-            <div class="community-card">
+          <div class="split-visual reveal" data-reveal="left">
+            <div class="community-card glass-card">
               <blockquote>
                 "Acompañanos en la transición hacia un consumo más sustentable y consciente en Argentina."
               </blockquote>
@@ -359,11 +517,15 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section" id="cta">
-      <div class="container cta-content">
+    <section class="cta-section cta-fancy" id="cta">
+      <div class="cta-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+      </div>
+      <div class="container cta-content reveal" data-reveal="scale">
         <h2>¿Listo para empezar tu transición ecológica?</h2>
         <p>Unite a EcolBox AR y recibí cada mes productos que cuidan el planeta y apoyan emprendedores locales.</p>
-        <a href="#planes" class="btn btn-light btn-lg">Suscribirme ahora</a>
+        <a href="#planes" class="btn btn-light btn-lg btn-glow">Suscribirme ahora</a>
       </div>
     </section>
   </main>
@@ -400,6 +562,7 @@
     </div>
   </footer>
 
+  <script src="js/effects.js"></script>
   <script src="js/main.js"></script>
   <script src="js/admin.js"></script>
 </body>

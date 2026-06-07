@@ -263,7 +263,7 @@ h3 {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: calc(var(--header-height) + 3rem) 0 4rem;
+  padding: calc(var(--header-height) + 3rem) 0 5rem;
   overflow: hidden;
 }
 
@@ -280,6 +280,8 @@ h3 {
 .hero-content {
   color: #fff;
   max-width: 720px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-badge {
