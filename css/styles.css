@@ -1122,6 +1122,10 @@ h3 {
   transform: translateX(-50%) translateY(0);
 }
 
+.admin-toast-error {
+  background: #9b2226;
+}
+
 .admin-mode .header {
   top: 56px;
 }

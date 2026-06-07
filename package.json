@@ -1,0 +1,8 @@
+{
+  "name": "ecolbox-ar",
+  "private": true,
+  "description": "EcolBox AR — landing page with admin CMS",
+  "engines": {
+    "node": ">=18"
+  }
+}

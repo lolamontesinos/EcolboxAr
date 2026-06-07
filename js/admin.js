@@ -1,9 +1,10 @@
 (function () {
   'use strict';
 
-  const STORAGE_KEY = 'ecolbox-admin-data';
   const SESSION_KEY = 'ecolbox-admin-session';
+  const PASSWORD_SESSION_KEY = 'ecolbox-admin-pwd';
   const ADMIN_PASSWORD = 'ecolbox';
+  const API_URL = '/api/content';
 
   const EDITABLE_SELECTOR = [
     'header .logo-text',
@@ -56,17 +57,11 @@
   let selectedSection = null;
   let selectedLink = null;
   let toolbar = null;
+  let adminPassword = null;
+  let isSaving = false;
 
-  function loadData() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { elements: {}, styles: {}, hiddenSections: [] };
-    } catch {
-      return { elements: {}, styles: {}, hiddenSections: [] };
-    }
-  }
-
-  function saveData(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  function emptyContent() {
+    return { elements: {}, links: {}, styles: {}, hiddenSections: [] };
   }
 
   function assignEditIds() {
@@ -77,8 +72,8 @@
     });
   }
 
-  function applySavedContent() {
-    const data = loadData();
+  function applyContent(data) {
+    if (!data) return;
 
     assignEditIds();
 
@@ -87,8 +82,17 @@
       if (el && value != null) el.innerHTML = value;
     });
 
+    Object.entries(data.links || {}).forEach(([id, href]) => {
+      const el = document.querySelector(`[data-edit-id="${id}"]`);
+      if (el && el.tagName === 'A' && href != null) el.setAttribute('href', href);
+    });
+
     Object.entries(data.styles || {}).forEach(([key, value]) => {
       document.documentElement.style.setProperty(key, value);
+    });
+
+    document.querySelectorAll('.admin-hidden').forEach((el) => {
+      el.classList.remove('admin-hidden');
     });
 
     (data.hiddenSections || []).forEach((sectionId) => {
@@ -97,11 +101,32 @@
     });
   }
 
+  async function fetchRemoteContent() {
+    const response = await fetch(API_URL, { cache: 'no-store' });
+    if (!response.ok) throw new Error('No se pudo cargar el contenido');
+    return response.json();
+  }
+
+  async function loadAndApplyContent() {
+    try {
+      const data = await fetchRemoteContent();
+      applyContent(data);
+    } catch (err) {
+      console.warn('Usando contenido por defecto:', err.message);
+    }
+  }
+
   function collectContent() {
     assignEditIds();
+
     const elements = {};
+    const links = {};
+
     document.querySelectorAll('[data-edit-id]').forEach((el) => {
       elements[el.dataset.editId] = el.innerHTML;
+      if (el.tagName === 'A') {
+        links[el.dataset.editId] = el.getAttribute('href') || '#';
+      }
     });
 
     const styles = {};
@@ -114,10 +139,26 @@
       .map((el) => el.id)
       .filter(Boolean);
 
-    return { elements, styles, hiddenSections };
+    return { elements, links, styles, hiddenSections };
   }
 
-  function showToast(message) {
+  async function saveRemoteContent(data, action) {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: adminPassword,
+        action,
+        data,
+      }),
+    });
+
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Error al guardar');
+    return result;
+  }
+
+  function showToast(message, isError) {
     let toast = document.querySelector('.admin-toast');
     if (!toast) {
       toast = document.createElement('div');
@@ -125,8 +166,18 @@
       document.body.appendChild(toast);
     }
     toast.textContent = message;
+    toast.classList.toggle('admin-toast-error', !!isError);
     toast.classList.add('visible');
-    setTimeout(() => toast.classList.remove('visible'), 2500);
+    setTimeout(() => toast.classList.remove('visible'), 3200);
+  }
+
+  function setSaveLoading(loading) {
+    isSaving = loading;
+    const btn = toolbar?.querySelector('#admin-save');
+    if (btn) {
+      btn.disabled = loading;
+      btn.textContent = loading ? 'Guardando…' : 'Guardar para todos';
+    }
   }
 
   function createToolbar() {
@@ -137,7 +188,7 @@
     toolbar.innerHTML = `
       <div class="admin-toolbar-inner">
         <span class="admin-toolbar-title">Modo admin</span>
-        <span class="admin-toolbar-hint">Hacé clic en cualquier texto para editarlo</span>
+        <span class="admin-toolbar-hint">Los cambios se guardan para todos los visitantes</span>
         <div class="admin-toolbar-colors" id="admin-colors"></div>
         <div class="admin-toolbar-link" id="admin-link-editor" hidden>
           <label>URL del enlace:</label>
@@ -147,7 +198,7 @@
         <div class="admin-toolbar-actions">
           <button type="button" class="admin-btn" id="admin-hide-section" disabled>Ocultar sección</button>
           <button type="button" class="admin-btn" id="admin-show-sections">Secciones ocultas</button>
-          <button type="button" class="admin-btn admin-btn-primary" id="admin-save">Guardar</button>
+          <button type="button" class="admin-btn admin-btn-primary" id="admin-save">Guardar para todos</button>
           <button type="button" class="admin-btn admin-btn-danger" id="admin-reset">Restablecer</button>
           <button type="button" class="admin-btn" id="admin-exit">Salir</button>
         </div>
@@ -171,16 +222,31 @@
       document.documentElement.style.setProperty(input.dataset.var, input.value);
     });
 
-    toolbar.querySelector('#admin-save').addEventListener('click', () => {
-      saveData(collectContent());
-      showToast('Cambios guardados');
+    toolbar.querySelector('#admin-save').addEventListener('click', async () => {
+      if (isSaving) return;
+      setSaveLoading(true);
+      try {
+        await saveRemoteContent(collectContent());
+        showToast('Guardado — todos verán los cambios al recargar');
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        setSaveLoading(false);
+      }
     });
 
-    toolbar.querySelector('#admin-reset').addEventListener('click', () => {
-      if (confirm('¿Restablecer la página al contenido original? Se perderán todos los cambios guardados.')) {
-        localStorage.removeItem(STORAGE_KEY);
+    toolbar.querySelector('#admin-reset').addEventListener('click', async () => {
+      if (!confirm('¿Restablecer la página al contenido original para TODOS los visitantes?')) return;
+
+      setSaveLoading(true);
+      try {
+        await saveRemoteContent(emptyContent(), 'reset');
         sessionStorage.removeItem(SESSION_KEY);
+        adminPassword = null;
         location.reload();
+      } catch (err) {
+        showToast(err.message, true);
+        setSaveLoading(false);
       }
     });
 
@@ -192,15 +258,15 @@
       selectedSection.classList.remove('admin-section-selected');
       selectedSection = null;
       updateSectionButton();
-      showToast('Sección oculta (guardá para persistir)');
+      showToast('Sección oculta — recordá guardar para todos');
     });
 
     toolbar.querySelector('#admin-show-sections').addEventListener('click', showHiddenSectionsMenu);
 
     toolbar.querySelector('#admin-link-apply').addEventListener('click', () => {
       if (selectedLink) {
-        selectedLink.href = toolbar.querySelector('#admin-link-input').value || '#';
-        showToast('Enlace actualizado');
+        selectedLink.setAttribute('href', toolbar.querySelector('#admin-link-input').value || '#');
+        showToast('Enlace actualizado — recordá guardar para todos');
       }
     });
 
@@ -235,7 +301,7 @@
     const section = document.getElementById(choice);
     if (section) {
       section.classList.remove('admin-hidden');
-      showToast('Sección visible de nuevo');
+      showToast('Sección visible — recordá guardar para todos');
     }
   }
 
@@ -266,7 +332,6 @@
     editableElements.forEach((el) => {
       el.setAttribute('contenteditable', 'true');
       el.classList.add('admin-editable');
-
       el.addEventListener('click', onEditableClick);
       el.addEventListener('blur', onEditableBlur);
       el.addEventListener('keydown', onEditableKeydown);
@@ -316,8 +381,7 @@
     }
   }
 
-  function onEditableBlur(e) {
-    if (e.currentTarget.tagName === 'A') return;
+  function onEditableBlur() {
     updateLinkEditor(null);
   }
 
@@ -348,12 +412,14 @@
     document.body.classList.add('admin-mode');
     createToolbar();
     enableEditing();
-    showToast('Modo admin activado — editá lo que quieras y guardá');
+    showToast('Modo admin — guardá para que todos vean los cambios');
   }
 
   function exitAdmin() {
     adminActive = false;
     sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(PASSWORD_SESSION_KEY);
+    adminPassword = null;
     document.body.classList.remove('admin-mode');
     disableEditing();
     if (selectedSection) selectedSection.classList.remove('admin-section-selected');
@@ -362,15 +428,20 @@
 
   function requestAdminAccess() {
     const password = prompt('Contraseña de admin:');
+    if (password === null) return;
     if (password === ADMIN_PASSWORD) {
+      adminPassword = password;
+      sessionStorage.setItem(PASSWORD_SESSION_KEY, password);
       enterAdmin();
-    } else if (password !== null) {
+    } else {
       alert('Contraseña incorrecta');
     }
   }
 
-  function init() {
-    applySavedContent();
+  async function init() {
+    await loadAndApplyContent();
+
+    adminPassword = sessionStorage.getItem(PASSWORD_SESSION_KEY);
 
     const trigger = document.getElementById('copyright-trigger');
     if (trigger) {
@@ -378,16 +449,12 @@
         e.preventDefault();
         if (adminActive) {
           exitAdmin();
-        } else if (sessionStorage.getItem(SESSION_KEY)) {
+        } else if (sessionStorage.getItem(SESSION_KEY) && adminPassword) {
           enterAdmin();
         } else {
           requestAdminAccess();
         }
       });
-    }
-
-    if (sessionStorage.getItem(SESSION_KEY)) {
-      enterAdmin();
     }
 
     document.addEventListener('click', (e) => {
