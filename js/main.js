@@ -40,7 +40,7 @@
   }, observerOptions);
 
   document.querySelectorAll(
-    '.card, .value-card, .product-card, .pricing-card, .timeline-item, .kpi, .community-card, .section-header'
+    '.card, .value-card, .product-card, .pricing-card, .timeline-item, .box-showcase, .community-card, .section-header'
   ).forEach((el) => {
     el.classList.add('fade-in');
     observer.observe(el);
