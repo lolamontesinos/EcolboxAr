@@ -70,8 +70,9 @@
     "edit-66-p": "Reducí el uso de plásticos de un solo uso en tu rutina diaria.",
     "edit-67-h3": "Bolsas reutilizables",
     "edit-68-p": "Bolsas de tela y materiales sustentables para tus compras.",
-    "edit-69-h3": "<h3 style=\"font-family: Fraunces, Georgia, serif; background-color: rgb(240, 237, 230);\" data-edit-id=\"edit-71-h3\">Sorpresa especial</h3>",
-    "edit-71-h3": "Sorpresa especial",
+    "edit-69-h3": "<h3 style=\"font-family: Fraunces, Georgia, serif; background-color: rgb(240, 237, 230);\" data-edit-id=\"edit-71-h3\"><h3 style=\"font-family: Fraunces, Georgia, serif;\" data-edit-id=\"edit-72-h3\">Sorpresa especial</h3></h3>",
+    "edit-71-h3": "<h3 style=\"font-family: Fraunces, Georgia, serif;\" data-edit-id=\"edit-72-h3\">Sorpresa especial</h3>",
+    "edit-72-h3": "Sorpresa especial",
     "edit-70-p": "<span style=\"background-color: rgb(240, 237, 230);\">En el plan Premium: un producto exclusivo de emprendedores locales.</span>",
     "edit-71-span": "Estructura de precios",
     "edit-72-h2": "Elegí tu plan",
@@ -174,7 +175,7 @@
     "edit-149-a": "#que-es"
   },
   "styles": {
-    "--color-primary": "#2d6a4f",
+    "--color-primary": "#49b685",
     "--color-primary-dark": "#1b4332",
     "--color-accent": "#95d5b2",
     "--color-bg": "#faf9f6"
