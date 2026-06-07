@@ -23,7 +23,6 @@
     'main .stat-label',
     'main .card-icon',
     'main .value-number',
-    'main .product-emoji',
     'main .timeline-dot',
     'main .pricing-card h3',
     'main .pricing-desc',
