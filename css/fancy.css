@@ -134,6 +134,14 @@
 
 .hero-carousel {
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-carousel .carousel-viewport {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-lg);
 }
 
 .hero-slide-card {
@@ -360,8 +368,13 @@
   border-color: var(--color-primary);
 }
 
-.carousel-prev { left: -12px; }
-.carousel-next { right: -12px; }
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+
+@media (min-width: 901px) {
+  .products-carousel .carousel-prev { left: -4px; }
+  .products-carousel .carousel-next { right: -4px; }
+}
 
 .carousel-dots {
   display: flex;
@@ -601,19 +614,35 @@
   margin-top: 2px;
 }
 
+.header.scrolled {
   background: rgba(250, 249, 246, 0.92);
   backdrop-filter: blur(20px);
 }
 
+/* Prevent horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 3rem;
+  }
+
   .hero-layout {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
+    min-width: 0;
   }
 
   .hero-content {
     max-width: 100%;
+    min-width: 0;
   }
 
   .hero-subtitle {
@@ -623,52 +652,179 @@
 
   .hero-actions {
     justify-content: center;
+    margin-bottom: 2rem;
   }
 
   .hero-stats {
     justify-content: center;
+    gap: 1.25rem;
   }
 
   .hero-showcase {
-    max-width: 480px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    justify-self: center;
+    justify-self: stretch;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .hero-carousel,
+  .hero-carousel .carousel-viewport,
+  .hero-carousel .carousel-track,
+  .hero-carousel .carousel-slide,
+  .hero-slide-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-slide-card {
+    padding: 0.75rem;
   }
 
   .hero-slide-img {
-    max-height: 380px;
-    min-height: 260px;
+    max-height: 300px;
+    min-height: unset;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .hero-slide-caption {
+    font-size: 0.875rem;
+    padding: 0 0.25rem;
   }
 
   .products-carousel .carousel-slide {
     flex: 0 0 calc(50% - 0.5rem);
   }
 
-  .pricing-carousel .carousel-slide {
-    flex: 0 0 85%;
+  .products-carousel .carousel-viewport {
+    margin: 0 1.25rem;
   }
 
-  .carousel-prev { left: 4px; }
-  .carousel-next { right: 4px; }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .banner-text p {
+    font-size: 0.9375rem;
+    padding: 0 0.5rem;
+  }
+
+  .carousel-prev { left: 2px; }
+  .carousel-next { right: 2px; }
+
+  .box-showcase-img {
+    max-width: 100%;
+  }
+
+  .split.reverse {
+    direction: ltr;
+  }
 }
 
 @media (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero {
+    padding-top: calc(var(--header-height) + 1.5rem);
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-slide-img {
+    max-height: 240px;
+  }
+
+  .hero-slide-card {
+    padding: 0.5rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stat {
+    align-items: center;
+  }
+
   .products-carousel .carousel-slide {
-    flex: 0 0 85%;
+    flex: 0 0 88%;
+  }
+
+  .products-carousel .carousel-viewport {
+    margin: 0 0.25rem;
   }
 
   .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1.25rem;
+    width: 34px;
+    height: 34px;
+    font-size: 1.125rem;
   }
+
+  .carousel-prev { left: 0; }
+  .carousel-next { right: 0; }
 
   .hero-scroll-hint {
     display: none;
   }
 
   .banner-slide {
-    min-height: 260px;
+    min-height: 220px;
+    padding: 2rem 0;
+  }
+
+  .banner-text h2 {
+    font-size: 1.35rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .marquee-content {
+    font-size: 0.75rem;
+    gap: 2rem;
+  }
+
+  .testimonial-card p {
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+  }
+
+  .community-card {
+    padding: 1.75rem;
+  }
+
+  .pricing-card {
+    padding: 1.5rem;
+  }
+
+  .carousel-hint {
+    font-size: 0.75rem;
+  }
+
+  .hero-orbs .orb-1 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-orbs .orb-2 {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-orbs .orb-3 {
+    width: 100px;
+    height: 100px;
   }
 }
 

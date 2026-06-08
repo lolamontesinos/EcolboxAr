@@ -1276,4 +1276,12 @@ h3 {
   .hero-actions .btn {
     width: 100%;
   }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
 }
